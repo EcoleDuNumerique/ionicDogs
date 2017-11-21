@@ -6,25 +6,34 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { DogProvider } from '../providers/dog/dog';
+import {HttpClientModule} from "@angular/common/http";
+import {HomePageModule} from "../pages/home/home.module";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    HomePageModule,
+    IonicModule.forRoot(MyApp, {
+      backButtonText: '',
+      backButtonIcon: 'ios-arrow-back',
+      modalEnter: 'modal-slide-in',
+      modalLeave: 'modal-slide-out',
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DogProvider
   ]
 })
 export class AppModule {}
